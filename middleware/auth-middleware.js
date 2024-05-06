@@ -1,4 +1,4 @@
-const { ExtractToken } = require("../utils/token-config");
+const { ExtractToken } = require("../utils/token-util");
 
 exports.authorization = async (req, res, next) => {
   try {

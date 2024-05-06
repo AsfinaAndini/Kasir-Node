@@ -4,7 +4,7 @@ const admin = require('../models/index').admin;
 exports.getAllAdmin = async (_, res) => {
   try {
     const dataAdmin = await admin.findAll();
-    res.status(200).json({
+    res.json({
       success: true,
       message: "Success load data admin",
       data: dataAdmin,
@@ -22,7 +22,7 @@ exports.findAdmin = async (req, res) => {
     if (!dataAdmin)
       return res.status(404).json({ message: "Data admin not found" });
 
-    res.status(200).json({
+    res.json({
       success: true,
       message: "Success load data admin",
       data: dataAdmin,
@@ -38,7 +38,7 @@ exports.addAdmin = async (req, res) => {
     const { email, password, nama } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newAdmin = await admin.create({ email, password: hashedPassword, nama });
-    res.status(200).json({
+    res.json({
       success: true,
       message: "Success create data admin",
       data: newAdmin,
@@ -48,7 +48,6 @@ exports.addAdmin = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 
 exports.updateAdmin = async (req, res) => {
   try {
@@ -64,14 +63,14 @@ exports.updateAdmin = async (req, res) => {
     const { email, password, name } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     await existingAdmin.update({ email, password: hashedPassword, name });
-    res.status(200).json({
+    res.json({
       success: true,
       message: "Success update data admin",
       data: existingAdmin,
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.json({ message: "Internal Server Error" });
   }
 };
 
@@ -94,6 +93,6 @@ exports.deleteadmin = async (req, res) => {
       });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.json({ message: "Internal Server Error" });
   }
 };
