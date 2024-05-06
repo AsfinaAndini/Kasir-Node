@@ -1,0 +1,9 @@
+###
+// Login Admin
+POST http://localhost:8000/admin/
+Content-Type: application/json
+
+{
+    "email" : "admin@smktelkom-mlg.sch.id",
+    "password" : "admin123"
+}
