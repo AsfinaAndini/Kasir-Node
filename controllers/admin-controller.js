@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { admin } = require('../models/admin'); 
+const admin = require('../models/index').admin; 
 
 exports.getAllAdmin = async (_, res) => {
   try {
