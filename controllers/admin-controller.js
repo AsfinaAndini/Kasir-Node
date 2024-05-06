@@ -35,19 +35,20 @@ exports.findAdmin = async (req, res) => {
 
 exports.addAdmin = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, nama } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const admin = await admin.create({ nama, email, password: hashedPassword });
+    const newAdmin = await admin.create({ email, password: hashedPassword, nama });
     res.status(200).json({
       success: true,
       message: "Success create data admin",
-      data: admin,
+      data: newAdmin,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 exports.updateAdmin = async (req, res) => {
   try {
